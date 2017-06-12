@@ -13,8 +13,7 @@ data class ConnectedDeviceSummary(val androidList: List<Device>, val iosList: Li
         property = "type")
 @JsonSubTypes(
         Type(value = Android::class, name = "android"),
-        Type(value = iOS::class, name = "ios")
-)
+        Type(value = iOS::class, name = "ios"))
 sealed class Device
 
 data class Android(
