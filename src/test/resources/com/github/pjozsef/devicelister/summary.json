@@ -1,0 +1,36 @@
+{
+  "androidList": [
+    {
+      "type": "android",
+      "name": "id1",
+      "status": "device",
+      "usb": "7642384X",
+      "product": "heroltexx",
+      "model": "SM_G930F",
+      "device": "herolte"
+    },
+    {
+      "type": "android",
+      "name": "id2",
+      "status": "device",
+      "usb": "3342245160X",
+      "product": null,
+      "model": null,
+      "device": null
+    }
+  ],
+  "iosList": [
+    {
+      "type": "ios",
+      "name": "ios1",
+      "version": "10.1.1",
+      "udid": "5ac10199e2a03419"
+    },
+    {
+      "type": "ios",
+      "name": "ios2",
+      "version": "9.0",
+      "udid": "a4cd772f7a7115a"
+    }
+  ]
+}
