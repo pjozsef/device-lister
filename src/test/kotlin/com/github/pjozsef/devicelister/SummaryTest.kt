@@ -18,7 +18,7 @@ class SummaryTest {
     val baseSummary = Summary(androidList, iosList)
 
     @Test
-    fun `Summary of with correct file`() {
+    fun `Summary#of with correct file`() {
         val expected = baseSummary
 
         val result = Summary.from(javaClass.getResource("summary.json").path)
