@@ -7,7 +7,7 @@ private typealias Mapper = (MatchGroupCollection) -> Device
 val androidCommand = "adb devices -l"
 val iosCommand = "instruments -s devices | grep -v Simulator"
 
-val androidRegex = Regex("^(?<name>\\w+)\\s+(?<status>[a-z]+)\\s+usb:(?<usb>\\w+)(\\s+product:(?<product>[-\\w]+)\\s+model:(?<model>[-\\w]+)\\s+device:(?<device>[-\\w]+))?$")
+val androidRegex = Regex("^(?<name>\\w+)\\s+(?<status>[a-z]+)\\s+usb:(?<usb>[\\w\\.\\-]+)(\\s+product:(?<product>[-\\w]+)\\s+model:(?<model>[-\\w]+)\\s+device:(?<device>[-\\w]+))?$")
 val iosRegex = Regex("^(?<name>.+)\\s+\\((?<version>[\\d\\.]+)\\)\\s*\\[(?<udid>[\\w-]+)\\]$")
 
 val androidMapper: Mapper = {
