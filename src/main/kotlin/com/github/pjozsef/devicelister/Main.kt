@@ -10,9 +10,7 @@ fun main(args: Array<String>) {
 }
 
 private fun listDevices() {
-    val summary = Summary(
-            androidDevices(),
-            iosDevices())
+    val summary = Summary(androidDevices(), iosDevices())
     println(summary.json)
 }
 
