@@ -1,5 +1,7 @@
+apply from: 'version.gradle'
+
 group 'com.github.pjozsef'
-version '0.0.1'
+version gitVersionName
 
 buildscript {
     ext.kotlin_version = '1.1.2-2'
