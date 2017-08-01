@@ -1,5 +1,5 @@
 {
-  "androidList": [
+  "devices": [
     {
       "type": "android",
       "name": "id1",
@@ -17,9 +17,7 @@
       "product": null,
       "model": null,
       "device": null
-    }
-  ],
-  "iosList": [
+    },
     {
       "type": "ios",
       "name": "ios1",

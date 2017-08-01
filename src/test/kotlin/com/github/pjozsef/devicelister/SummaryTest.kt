@@ -15,7 +15,7 @@ class SummaryTest {
 
     val iosList = listOf(ios1, ios2)
 
-    val baseSummary = Summary(androidList, iosList)
+    val baseSummary = Summary(androidList + iosList)
 
     @Test
     fun `Summary#of with correct file`() {

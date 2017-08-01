@@ -18,17 +18,21 @@ buildscript {
 apply plugin: 'kotlin'
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7"
     compile "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
     compile "com.fasterxml.jackson.core:jackson-annotations:${jackson_version}"
     compile "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
 
+    compile "com.beust:jcommander:1.71"
+
     testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:2.+"
 }
 
 

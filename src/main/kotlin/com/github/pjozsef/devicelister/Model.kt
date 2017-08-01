@@ -13,16 +13,27 @@ import java.io.File
 private val mapper = ObjectMapper().registerModule(KotlinModule())
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class Summary(val androidList: List<Device>, val iosList: List<Device>) {
+data class Summary(val devices: List<Device>) {
+    val android: List<Device> by lazy {
+        devices.filter { it is Android }
+    }
+
     val androidCount: Int
-        get() = androidList.size
+        get() = android.size
+
+    val ios: List<Device> by lazy {
+        devices.filter { it is iOS }
+    }
+
     val iosCount: Int
-        get() = iosList.size
+        get() = ios.size
 
     companion object {
         fun from(path: String): Summary = mapper.readValue(File(path), Summary::class.java) ?: throw IllegalArgumentException("Could not parse from $path!")
     }
 }
+
+data class SummaryExport(val devices: List<Device>)
 
 @JsonTypeInfo(
         use = Id.NAME,
@@ -55,10 +66,10 @@ data class SummaryDiff(
 
     companion object {
         fun of(before: Summary, after: Summary): SummaryDiff {
-            val androidMissing = before.androidList - after.androidList
-            val androidNew = after.androidList - before.androidList
-            val iosMissing = before.iosList - after.iosList
-            val iosNew = after.iosList - before.iosList
+            val androidMissing = before.android - after.android
+            val androidNew = after.android - before.android
+            val iosMissing = before.ios - after.ios
+            val iosNew = after.ios - before.ios
             return SummaryDiff(androidMissing, androidNew, iosMissing, iosNew)
         }
     }
@@ -66,3 +77,6 @@ data class SummaryDiff(
 
 val Any.json: String
     get() = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(this)
+
+val Summary.json: String
+    get() = SummaryExport(devices).json

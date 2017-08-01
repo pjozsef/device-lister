@@ -15,7 +15,7 @@ class SummaryDiffTest {
 
     val iosList = listOf(ios1, ios2)
 
-    val baseSummary = Summary(androidList, iosList)
+    val baseSummary = Summary(androidList + iosList)
 
     @Test
     fun `diff with empty summaries`() {
@@ -39,7 +39,7 @@ class SummaryDiffTest {
     @Test
     fun `diff with new devices`() {
         val before = emptySummary()
-        val after = Summary(androidList, iosList)
+        val after = baseSummary
 
         val expected = SummaryDiff(emptyList(), androidList, emptyList(), iosList)
 
@@ -50,7 +50,7 @@ class SummaryDiffTest {
 
     @Test
     fun `diff with missing devices`() {
-        val before = Summary(androidList, iosList)
+        val before = baseSummary
         val after = emptySummary()
 
         val expected = SummaryDiff(androidList, emptyList(), iosList, emptyList())
@@ -63,11 +63,9 @@ class SummaryDiffTest {
     @Test
     fun `diff with missing and new devices`() {
         val before = Summary(
-                listOf(android1),
-                listOf(ios1))
+                listOf(android1) + listOf(ios1))
         val after = Summary(
-                listOf(android2),
-                listOf(ios2))
+                listOf(android2) + listOf(ios2))
 
         val expected = SummaryDiff(
                 listOf(android1),
@@ -80,7 +78,7 @@ class SummaryDiffTest {
         assertEquals(expected, result)
     }
 
-    private fun emptySummary() = Summary(emptyList(), emptyList())
+    private fun emptySummary() = Summary(emptyList())
 
     private fun emptyDiff() = SummaryDiff(emptyList(), emptyList(), emptyList(), emptyList())
 }
