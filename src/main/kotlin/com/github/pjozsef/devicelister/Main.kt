@@ -35,10 +35,6 @@ private fun listDevices(listCommand: ListCommand) {
         if (listCommand.listIOS) {
             devices += iosDevices()
         }
-        when (true) {
-            listCommand.listAndroid -> println("android")
-            listCommand.listIOS -> println("ios")
-        }
     }
     println(Summary(devices).json)
 }
