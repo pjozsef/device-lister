@@ -75,6 +75,9 @@ data class SummaryDiff(
     }
 }
 
+val SummaryDiff.hasChanges: Boolean
+    get() = androidMissing.size + androidNew.size + iosMissing.size + iosNew.size > 0
+
 val Any.json: String
     get() = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(this)
 

@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
 
     when (jc.parsedCommand) {
         Command.LIST -> listDevices(listCommand)
-        Command.DIFF -> listDifference(diffCommand.before, diffCommand.after)
+        Command.DIFF -> listDifference(diffCommand)
         else -> jc.usage()
     }
 }
@@ -39,9 +39,18 @@ private fun listDevices(listCommand: ListCommand) {
     println(Summary(devices).json)
 }
 
-private fun listDifference(beforePath: String, afterPath: String) {
-    val before = Summary.from(beforePath)
-    val after = Summary.from(afterPath)
+private fun listDifference(diffCommand: DiffCommand) {
+    val before = Summary.from(diffCommand.before)
+    val after = Summary.from(diffCommand.after)
 
-    println(SummaryDiff.of(before, after).json)
+    val print: (SummaryDiff) -> Unit = { println(it.json) }
+
+    val diff = SummaryDiff.of(before, after)
+    if (diffCommand.silent) {
+        if (diff.hasChanges) {
+            print(diff)
+        }
+    } else {
+        print(diff)
+    }
 }
