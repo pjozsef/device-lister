@@ -24,6 +24,9 @@ class DiffCommand : Command() {
     @Parameter(required = true, description = "Files to diff")
     lateinit var files: List<String>
 
+    @Parameter(names = arrayOf("-s", "--silent"), description = "Silent if there are no changes")
+    var silent: Boolean = false
+
     val before: String
         get() = files[0]
 
