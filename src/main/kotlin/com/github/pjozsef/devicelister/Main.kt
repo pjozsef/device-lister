@@ -43,5 +43,5 @@ private fun listDifference(beforePath: String, afterPath: String) {
     val before = Summary.from(beforePath)
     val after = Summary.from(afterPath)
 
-    println(SummaryDiff.of(before, after))
+    println(SummaryDiff.of(before, after).json)
 }
